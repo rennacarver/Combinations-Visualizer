@@ -26,6 +26,14 @@
 - Allow users to query the permutations list (e.g. show all permutations containing a grapheme)
 - Allow sorting of results (numerically & alphabetically)
 
+## Performance Optimizations (for 50,000+ elements)
+
+- Virtualize the results list (react-virtuoso) so only visible rows are in the DOM
+- Drop the empty duplicate-key span to roughly halve nodes per unit
+- Generate permutations off the main thread (Web Worker) and lazily via generators
+- Memoize the color map and generation to avoid recomputes on unrelated state changes
+- Use stable keys (e.g. subsetGroup-permutationGroup) instead of array index
+
 ## Fixes
 
 - CSS needs refactoring (use intrinsic design patterns)
